@@ -7,6 +7,20 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
+        <Label Content="Employee Name" HorizontalAlignment="Left" Margin="33,33,0,0" VerticalAlignment="Top"/>
+        <Label Content="Date of birth" HorizontalAlignment="Left" Margin="33,86,0,0" VerticalAlignment="Top"/>
+        <Label Content="Department" HorizontalAlignment="Left" Margin="33,140,0,0" VerticalAlignment="Top"/>
+        <Label Content="Position" HorizontalAlignment="Left" Margin="33,242,0,0" VerticalAlignment="Top"/>
+        <Label Content="Hire date" HorizontalAlignment="Left" Margin="33,293,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="txtName" HorizontalAlignment="Left" Margin="135,37,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="265"/>
+        <DatePicker x:Name="dpDob" HorizontalAlignment="Left" Margin="135,87,0,0" VerticalAlignment="Top" Width="265"/>
+        <ComboBox  x:Name="cbDeps" HorizontalAlignment="Left" Margin="135,142,0,0" VerticalAlignment="Top" Width="265"/>
+        <CheckBox x:Name="cbManager" Content="Is Manager" HorizontalAlignment="Left" Margin="135,202,0,0" VerticalAlignment="Top"/>
+        <ComboBox x:Name="cbPosition" HorizontalAlignment="Left" Margin="135,246,0,0" VerticalAlignment="Top" Width="265"/>
+        <DatePicker x:Name="dpHireDate" HorizontalAlignment="Left" Margin="135,294,0,0" VerticalAlignment="Top" Width="265"/>
+        <Label Content="Skill" HorizontalAlignment="Left" Margin="439,33,0,0" VerticalAlignment="Top"/>
+        <ListBox x:Name="lbSkills" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="439,59,98,217" SelectionChanged="ListBox_SelectionChanged"/>
+        <Button Content="Add new employee" HorizontalAlignment="Left" Margin="320,371,0,0" VerticalAlignment="Top" RenderTransformOrigin="-5.779,3.108" Width="250" Click="Button_Click"/>
 
     </Grid>
 </Window>
