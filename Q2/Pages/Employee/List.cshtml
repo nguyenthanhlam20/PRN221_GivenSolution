@@ -1,0 +1,130 @@
+﻿@page
+@using Q2.Models
+@model Q2.Pages.Employee.ListModel
+@{
+    var departments = Model.departments;
+    var skills = Model.skills;
+    var employee = Model.employee;
+    var employees = Model.employees;
+    var departmentId = Model.DepartmentId;
+}
+
+<style>
+    th, td {
+        padding-top: 10px;
+        padding-right: 10px;
+        padding-bottom: 10px;
+    }
+</style>
+
+<div class="row">
+    <h1 class="text-center fs-1 fw-normal">Employee List Page</h1>
+</div>
+<div>
+    <form method="get">
+        <select name="departmentId">
+            <option value="0">Select one department</option>
+
+            @if (departments != null)
+            {
+                @foreach (var item in departments)
+                {
+                    @if (item.DepartmentId == departmentId)
+                    {
+                        <option selected="selected" value="@item.DepartmentId">@item.DepartmentName</option>
+                    }
+                    else
+                    {
+                        <option value="@item.DepartmentId">@item.DepartmentName</option>
+                    }
+                }
+            }
+        </select>
+        <button type="submit">Filter</button>
+    </form>
+</div>
+<div class="row">
+    <div class="col-sm-12 @(employee != null ? "col-md-8" : "")">
+        <h4>Employee List:</h4>
+        <table cellspacing="2">
+            <thead>
+                <tr>
+                    <th>EmployeeName</th>
+                    <th>DateOfBirth</th>
+                    <th>Department</th>
+                    <th>Position</th>
+                    <th>HireDate</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (employees != null)
+                {
+                    @foreach (var item in employees)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.EmployeeName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.DateOfBirth)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Department)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Position)
+                            </td>
+                            <td>
+                                @if (item.HireDate != null)
+                                {
+                                    @item?.HireDate.Value.ToString("dd-mm-yyyy")
+                                }
+                            </td>
+                            <td>
+                                <a asp-page="./List" asp-route-employeeId="@item.EmployeeId" asp-route-departmentId="@departmentId">View skills</a>
+                            </td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+    <div class="col-sm-12  @(employee != null ? "col-md-4" : "d-none") ">
+        <h4>Skill of employee</h4>
+        <h5>"@employee?.Name"</h5>
+        <table>
+            <tr>
+                <th>Skill's Name</th>
+                <th>ProficiencyLevel</th>
+                <th>AcquiredDate</th>
+            </tr>
+            <tbody>
+                @if (skills != null)
+                {
+                    @foreach (var item in skills)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.SkillName)
+                            </td>
+                            <td>
+                                @if (item.ProficiencyLevel == null)
+                                {
+                                    <span>No Content</span>
+                                }
+                            </td>
+                            <td>
+                                @if (item.AcquiredDate == null)
+                                {
+                                    <span> No Content</span>
+                                }
+                            </td>
+                        </tr>
+
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
