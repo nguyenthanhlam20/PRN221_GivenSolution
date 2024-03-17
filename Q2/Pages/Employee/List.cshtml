@@ -67,7 +67,10 @@
                                 @Html.DisplayFor(modelItem => item.EmployeeName)
                             </td>
                             <td>
-                                @Html.DisplayFor(modelItem => item.DateOfBirth)
+                                @if (item.DateOfBirth != null)
+                                {
+                                    @item?.DateOfBirth.Value.ToString("dd-MM-yyyy")
+                                }
                             </td>
                             <td>
                                 @Html.DisplayFor(modelItem => item.Department)
@@ -78,7 +81,7 @@
                             <td>
                                 @if (item.HireDate != null)
                                 {
-                                    @item?.HireDate.Value.ToString("dd-mm-yyyy")
+                                    @item?.HireDate.Value.ToString("dd-MM-yyyy")
                                 }
                             </td>
                             <td>
@@ -112,12 +115,18 @@
                                 @if (item.ProficiencyLevel == null)
                                 {
                                     <span>No Content</span>
+                                } else
+                                {
+                                    <span>@item.ProficiencyLevel</span>
                                 }
                             </td>
                             <td>
                                 @if (item.AcquiredDate == null)
                                 {
                                     <span> No Content</span>
+                                } else
+                                {
+                                    <span>@item?.AcquiredDate.Value.ToString("dd-MM-yyyy")</span>
                                 }
                             </td>
                         </tr>
